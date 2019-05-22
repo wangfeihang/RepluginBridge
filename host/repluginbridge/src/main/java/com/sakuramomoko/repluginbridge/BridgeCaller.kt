@@ -1,4 +1,4 @@
-package com.wali.live.replugin
+package com.sakuramomoko.repluginbridge
 
 import android.util.Log
 import java.lang.reflect.Method
@@ -16,7 +16,7 @@ class BridgeCaller(private val classLoader: ClassLoader) {
         passedArgs: Array<out Any>?
     ): Any? {
         Log.i(TAG, "callBridgeMethod, calledClassName:${clazz.name}, calledMethodName:${method.name}")
-        val hostMsgClass = classLoader.loadClass("com.wali.live.replugin.RealBridge")
+        val hostMsgClass = classLoader.loadClass("com.sakuramomoko.repluginbridge.RealBridge")
         val instance = hostMsgClass.getDeclaredField("INSTANCE").get(null)
         val bridgeMethod = hostMsgClass.getDeclaredMethod(
             "bridgeMethod",

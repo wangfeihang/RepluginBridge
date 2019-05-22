@@ -1,4 +1,4 @@
-package com.wali.live.replugin
+package com.sakuramomoko.repluginbridge.api
 
 import android.content.Context
 

@@ -1,4 +1,4 @@
-package com.wali.live.replugin
+package com.sakuramomoko.repluginbridge
 
 import android.util.Log
 import java.lang.reflect.Method
@@ -9,14 +9,6 @@ import java.lang.reflect.Method
 object ParamWrapper {
 
     const val TAG = "ParamWrapper"
-
-    /**
-     * [params]是拿不到的,是对面classloader的
-     * [calledMethod]是拿得到的，是当前classloader
-     *
-     *
-     *
-     */
 
     fun processParams(
         calledMethod: Method,
@@ -58,7 +50,6 @@ fun Any.parseToAnotherClass(classB: Class<*>): Any? {
         return this
     } else if (this.isMatchType(classB)) {
         if (classB.isInterface) {
-            //todo 返回当前类的代理
             return CallbackInvoker().getInstance(Class.forName(classB.name), this)
         } else {
             return this.getCloner(classB)

@@ -1,4 +1,4 @@
-package com.wali.live.replugin
+package com.sakuramomoko.repluginbridge
 
 import android.util.Log
 import java.lang.reflect.InvocationHandler

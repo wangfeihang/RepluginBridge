@@ -1,4 +1,4 @@
-package com.wali.live.replugin
+package com.sakuramomoko.repluginbridge
 
 import android.util.Log
 import java.lang.reflect.InvocationHandler
@@ -33,28 +33,21 @@ class CallbackInvoker {
 }
 
 class CallbackMethodProxy(
-    private val passParam: Any
+    private val realObject: Any
 ) : InvocationHandler {
 
     override fun invoke(proxy: Any?, method: Method?, args: Array<out Any>?): Any? {
         Log.i(TAG, "method invoke, method:${method?.name}")
         method?.let { method ->
             var methodResult: Any? = null
-            val passMethod = passParam.javaClass.methods.first {
+            val realMethod = realObject.javaClass.methods.first {
                 it.name == method.name
             }
             if (args == null) {
-                methodResult = passMethod.invoke(passParam)
+                methodResult = realMethod.invoke(realObject)
             } else {
-                /**
-                 * [args]是当前的classloader的，拿得到
-                 * [passMethod]是对面classloader的，拿不到
-                 * 把[args]传给[passMethod]
-                 *
-                 * [passMethod] decdcs
-                 */
-                ParamWrapper.processParams(passMethod, args)?.let {
-                    methodResult = passMethod.invoke(passParam, *it)
+                ParamWrapper.processParams(realMethod, args)?.let {
+                    methodResult = realMethod.invoke(realObject, *it)
                 }
             }
             return methodResult?.parseToAnotherClass(method.returnType)

@@ -1,4 +1,4 @@
-package com.wali.live.replugin
+package com.sakuramomoko.repluginbridge
 
 import android.util.Log
 
@@ -35,7 +35,6 @@ object RepluginBridge {
             return it as T
         }
         return null
-//        return ImplUtil.getImpl(clazz)!!
     }
 }
 

@@ -1,4 +1,4 @@
-package com.wali.live.replugin
+package com.sakuramomoko.repluginbridge
 
 import com.google.gson.Gson
 import java.lang.reflect.Type

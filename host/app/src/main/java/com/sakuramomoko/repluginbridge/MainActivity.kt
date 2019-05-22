@@ -7,11 +7,10 @@ import android.os.Looper
 import android.support.v7.app.AppCompatActivity
 import android.widget.Toast
 import com.qihoo360.replugin.RePlugin
-import com.wali.live.replugin.RepluginBridge
-import com.wali.live.replugin.TestActionDemo2
-import com.wali.live.replugin.TestCallback
-import com.wali.live.replugin.TestInfo
-import com.wali.live.replugin.TestInfo1
+import com.sakuramomoko.repluginbridge.api.TestActionDemo2
+import com.sakuramomoko.repluginbridge.api.TestCallback
+import com.sakuramomoko.repluginbridge.api.TestInfo
+import com.sakuramomoko.repluginbridge.api.TestInfo1
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -45,7 +44,9 @@ class MainActivity : AppCompatActivity() {
             if (RePlugin.isPluginInstalled(StaticInfo.pluginName)) {
                 val testController =
                     RepluginBridge.getApi(RePlugin.fetchClassLoader(StaticInfo.pluginName), TestActionDemo2::class.java)
-                        ?.onTestDemo2(this, TestInfo("测试demo2", TestInfo1("ceshidemo2")), object : TestCallback {
+                        ?.onTestDemo2(this, TestInfo("测试demo2",
+                            TestInfo1("ceshidemo2")), object :
+                            TestCallback {
                             override fun onSuc(testObj: TestInfo1) {
                                 toast("onsuc, testinfo:$testObj")
                             }

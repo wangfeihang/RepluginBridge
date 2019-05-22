@@ -3,6 +3,10 @@ package com.sakuramomoko.repluginbridge
 import android.content.Context
 import android.util.Log
 import com.qihoo360.replugin.RePluginApplication
+import com.sakuramomoko.repluginbridge.api.TestAction
+import com.sakuramomoko.repluginbridge.api.TestCallback
+import com.sakuramomoko.repluginbridge.api.TestController
+import com.sakuramomoko.repluginbridge.api.TestInfo
 import com.wali.live.replugin.RepluginBridge
 import com.wali.live.replugin.TestAction
 import com.wali.live.replugin.TestCallback
