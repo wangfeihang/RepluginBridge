@@ -17,7 +17,7 @@ object RepluginBridge {
      * @param clazz [T]的class
      * @param lazyInitialize 懒加载[T]的实例的方法
      */
-    fun <T> register(clazz: Class<T>, lazyInitialize: () -> T) {
+    fun <T> register(clazz: Class<T>, lazyInitialize: () -> T?) {
         ImplUtil.addImpl(clazz, lazyInitialize)
     }
 

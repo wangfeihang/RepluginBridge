@@ -12,13 +12,13 @@ object ImplUtil {
 
     private var implFactoryMap = mutableMapOf<Class<*>, ImplFactory<*>>()
 
-    fun <T> addImpl(clazz: Class<T>, lazyInitialize: () -> T) {
+    fun <T> addImpl(clazz: Class<T>, lazyInitialize: () -> T?) {
         implFactoryMap[clazz] =
             ImplFactory(lazyInitialize)
     }
 
     fun <T> getImpl(clazz: Class<T>): T? {
-        return implFactoryMap[clazz]?.getImplInstance() as T
+        return implFactoryMap[clazz]?.getImplInstance() as T?
     }
 
     fun getImplMethodResult(clazzName: String, methodName: String, params: Array<out Any>?): Any? {
@@ -53,12 +53,12 @@ object ImplUtil {
 }
 
 class ImplFactory<T>(
-    private val lazyInitialize: () -> T
+    private val lazyInitialize: () -> T?
 ) {
 
     private var implInstance: T? = null
 
-    fun getImplInstance(): T {
+    fun getImplInstance(): T? {
         if (implInstance == null) {
             implInstance = lazyInitialize()
         }
