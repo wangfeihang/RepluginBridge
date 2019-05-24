@@ -46,7 +46,7 @@ object ParamWrapper {
 }
 
 fun Any.parseToAnotherClass(classB: Class<*>): Any? {
-    if (classB.isAssignableFrom(this.javaClass)) {
+    if (classB.isAssignableFrom(this.javaClass) || classB.isPrimitive) {
         return this
     } else if (this.isMatchType(classB)) {
         if (classB.isInterface) {
